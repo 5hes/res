@@ -1,0 +1,41 @@
+name: Download File
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  download-file:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Push a tag
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        export NAME="res"
+        git tag $NAME
+        git push origin $NAME
+        
+    - name: Download files
+      run: |
+        mkdir Download
+        cd Download
+        wget https://drive.usercontent.google.com/download?id=1LKXuVu-Mre7ZsCDWGdIA4DibdF-k4t5e&export=download&confirm=t
+        wget https://drive.usercontent.google.com/download?id=1I5ni_7P0WpgqyU7uH5r8GGiQdV1mdHZ8&export=download&confirm=t
+
+    - name: Hash files
+      run: |
+        cd Download
+        md5sum *
+        
+    - uses: xresloader/upload-to-github-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        file: "Download/**"
+        tag_name: "res"
+        draft: true
