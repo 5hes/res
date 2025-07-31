@@ -3,6 +3,9 @@ name: Download File
 on:
   workflow_dispatch:
   push:
+  
+permissions:
+  contents: write
 
 jobs:
   download-file:
@@ -14,11 +17,11 @@ jobs:
 
     - name: Push a tag
       run: |
-        # git config --global user.name "GitHub Actions"
-        # git config --global user.email "actions@github.com"
-        # export NAME="res"
-        # git tag $NAME
-        # git push origin $NAME
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        export NAME="res"
+        git tag $NAME
+        git push origin $NAME
         
     - name: Download files
       run: |
@@ -30,13 +33,15 @@ jobs:
     - name: Hash files
       run: |
         cd Download
+        ls -l
         md5sum *
         
-    - uses: xresloader/upload-to-github-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
       with:
-        file: "Download/**"
-        tag: true
         tag_name: "res"
         draft: true
+        files: |
+          Download/**
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
