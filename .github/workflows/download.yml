@@ -27,8 +27,7 @@ jobs:
       run: |
         mkdir Download
         cd Download
-        wget "https://drive.usercontent.google.com/download?id=1LKXuVu-Mre7ZsCDWGdIA4DibdF-k4t5e&export=download&confirm=t"
-        wget "https://drive.usercontent.google.com/download?id=1I5ni_7P0WpgqyU7uH5r8GGiQdV1mdHZ8&export=download&confirm=t"
+        wget "https://master.dl.sourceforge.net/project/nazunamoe-rom/Mi%20Pad%204/ROM/Android11/ArrowOS/Arrow-v11.0-clover-UNOFFICIAL-20210908-VANILLA_60hz.zip?viasf=1"
 
     - name: Hash files
       run: |
