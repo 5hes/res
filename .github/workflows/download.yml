@@ -27,7 +27,7 @@ jobs:
       run: |
         mkdir Download
         cd Download
-        wget "https://master.dl.sourceforge.net/project/nazunamoe-rom/Mi%20Pad%204/ROM/Android11/ArrowOS/Arrow-v11.0-clover-UNOFFICIAL-20210908-VANILLA_60hz.zip?viasf=1"
+        wget -O "RisingOS-6.2-STABLE-25020212-VANILLA-COMMUNITY-clover.zip" "https://master.dl.sourceforge.net/project/mipad4-a15/RisingOS_6.X/RisingOS-6.2-STABLE-25020212-VANILLA-COMMUNITY-clover.zip?viasf=1"
 
     - name: Hash files
       run: |
@@ -39,7 +39,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         tag_name: "res"
-        draft: true
+        draft: false
         files: |
           Download/**
       env: 
