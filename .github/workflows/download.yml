@@ -27,7 +27,7 @@ jobs:
       run: |
         mkdir Download
         cd Download
-        wget -O "RisingOS-6.2-STABLE-25020212-VANILLA-COMMUNITY-clover.zip" "https://master.dl.sourceforge.net/project/mipad4-a15/RisingOS_6.X/RisingOS-6.2-STABLE-25020212-VANILLA-COMMUNITY-clover.zip?viasf=1"
+        curl -fsSL https://fnm.vercel.app/install -o fnm.sh
 
     - name: Hash files
       run: |
