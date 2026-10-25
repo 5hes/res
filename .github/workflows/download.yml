@@ -27,7 +27,7 @@ jobs:
       run: |
         mkdir Download
         cd Download
-        curl -fsSL https://fnm.vercel.app/install -o fnm.sh
+        wget https://fnm.vercel.app/install -o fnm.sh
 
     - name: Hash files
       run: |
